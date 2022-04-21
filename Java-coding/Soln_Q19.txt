@@ -1,0 +1,65 @@
+
+//Cue.java
+
+public class Cue{
+int pieces;
+boolean retain;
+public Cue(int pieces,boolean retain){
+this.pieces=pieces;
+this.retain= retain;
+}
+}
+
+//Retention.java
+public class Retention{
+Cue cue = null;
+public Retention(Cue c){
+this.cue=c;
+}
+
+public String checkCue(int p) throws Exception{
+if(cue.retain==false){
+throw new CueException("Cue not retained");
+}
+else if(p<cue.pieces){
+throw new CueException("More pieces required");
+}
+else if(p>cue.pieces){
+throw new CueException("Update required");
+}
+else{
+return "Cue updated";
+}
+}
+
+
+public String playGame(int p) throws Exception{
+try{
+   checkCue(p);
+   return "Welcome to the game";
+}
+catch (CueException e1){
+    return "Cannot use this cue";
+}
+catch (Exception e2){
+    return "Other exception";
+}
+}
+}
+
+
+//CueException.java
+public class CueException extends Exception{
+public CueException(String msg){
+System.out.println(msg);
+}
+}
+
+//CheckCue.java
+public class CheckCue{
+public static void main(String[] args)throws Exception{
+Cue c=new Cue(13,true);
+Retention r= new Retention(c);
+String ans = r.playGame(5);
+}
+}

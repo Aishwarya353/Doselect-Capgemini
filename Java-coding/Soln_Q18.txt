@@ -1,0 +1,62 @@
+SOLUTION FOR Q18 :
+
+//Material.java
+
+import java.io.*;
+
+public class Material {
+	int mass;
+    int temperature;
+
+    public Material(int mass,int temperature){
+        this.mass=mass;
+        this.temperature=temperature;
+    }
+
+    public String flowofHeat() throws Exception {
+	try {
+            checkMaterial();
+            return "Both in equilibrium";
+        }
+	catch (MaterialException m){
+            return "Invalid Material";
+        }
+    }
+
+    public String checkMaterial() throws Exception{
+	if(this.mass<0){
+            throw new MaterialException("Mass cannot be negative");
+        }
+	else if(this.mass==0){
+            throw new MaterialException("Mass cannot be zero");
+        }
+	else{
+            return "Valid material";
+        }
+    }
+    
+}
+
+
+
+//MaterialException.java
+
+public class MaterialException extends Exception {
+	public MaterialException(String msg){
+    }
+}
+
+
+
+//Materials.java
+
+public class Materials {
+
+	public static void main(String[] args) throws Exception{
+		// TODO Auto-generated method stub
+		Material m = new Material(12,32);
+		String s = m.flowofHeat();
+		System.out.println(s);
+	}
+
+}

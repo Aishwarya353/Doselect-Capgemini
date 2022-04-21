@@ -1,0 +1,61 @@
+package upskilling;
+
+import java.io.*;
+import java.util.*;
+
+class Student{
+	String stu_name;
+	int score;
+
+	public Student(String stu_name, int score){
+		this.stu_name = stu_name;
+		this.score = score;
+	}
+}
+
+class Merit{
+	HashMap<String, ArrayList<Student>> mlist = new HashMap<>();
+
+	public String newEntry(Student s, String university){
+		if(mlist.containsKey(university)){
+			ArrayList<Student> list = mlist.get(university);
+			list.add(s);
+			mlist.put(university, list);
+			return "student added";
+		}
+		else {
+			ArrayList<Student> list = new ArrayList<>();
+			list.add(s);
+			mlist.put(university, list);
+			return "university added";
+		}
+	}
+	public ArrayList<String> getStudents(String university){
+		ArrayList<String> list = new ArrayList<>();
+		if(mlist.get(university)!=null){
+			for(int i = 0; i<mlist.get(university).size(); i++){
+				list.add(mlist.get(university).get(i).stu_name);
+			}
+			return(list.size()!=0)?list:null;
+		}
+		else{
+			return null;
+			}
+	}
+}
+public class Merits {
+
+	public static void main(String[] args) throws Exception{
+		// TODO Auto-generated method stub
+		Merit obj = new Merit();
+		Student s1 = new Student("s1", 100);
+		Student s2 = new Student("s2", 100);
+		Student s3 = new Student("s3", 100);
+		System.out.println(obj.newEntry(s1, "TCE"));
+		System.out.println(obj.newEntry(s2, "TCE"));
+		System.out.println(obj.newEntry(s3, "AMC"));
+		System.out.println(obj.getStudents("NIT"));
+
+	}
+
+}

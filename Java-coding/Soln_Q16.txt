@@ -1,0 +1,61 @@
+import java.util.*;
+import java.io.*; 
+class Student
+{
+    HashMap<String,String> dataList =new HashMap<>();
+    public String addStudentDetails(String name,String id)
+      {
+          if(dataList.containsValue(name))
+          {
+              System.out.println("Id generation Failed,name is already present in the database");
+          }
+          else
+          {
+              dataList.put(name,id);
+              System.out.println("Id generated");
+          }
+          return null;
+         
+      }
+      public String deleteId(String name)
+       {
+           if(dataList.containsValue(name))
+           {
+            dataList.remove(name);
+            System.out.println("Id deleted successfully");
+           }
+           else{
+            System.out.println("Id not found");
+           }
+           return null;
+       } 
+       public String searchId(String name)
+       {
+        if(dataList.containsKey(name))
+           {
+            
+         System.out.println(dataList.get(name));
+         dataList.remove(name);
+           }
+      
+        else
+        {
+            System.out.println("Id not found");
+        }
+        return null;
+       } 
+}
+
+class Main 
+    {
+    public static void main(String args[])
+    {
+        Student obj=new Student();
+        String s1=obj.addStudentDetails("Sarah","99889");
+        String s2=obj.addStudentDetails("John","78985");
+        String s3=obj.deleteId("Sarah");
+        String s4=obj.searchId("Steve");
+        String s5=obj.searchId("John");
+        
+    }
+    }
