@@ -1,0 +1,51 @@
+import java.lang.*;
+import java.util.*;
+ class Program{
+  
+   public String name;
+   public boolean value;
+   public ArrayList<String> tags;
+  Program(String name, boolean value, ArrayList<String> tags){
+      this.name=name;
+this.value=value;
+this.tags=tags;
+}
+public void setName(String name){
+this.name=name;
+}
+public void value(boolean value){
+this.value=value;
+}
+public void tags(ArrayList<String>tags){
+this.tags=tags;
+}
+public String getName(){
+return name;
+}
+public boolean getValue(){
+return value;
+}
+public ArrayList<S
+   }
+  class Menu{
+  public Program prog;
+   public Menu(Program p) {
+this.p=p;
+}
+   public String addProgram()
+    {
+
+}
+   public String runQuery(String query){
+   
+}
+
+public class Main{
+public static void main(String [] args)throws Exception{
+Program p = new Program("reconcile program", true, new ArrayList<String>(Arrays.asList("C","D")));
+Menu m = new Menu(p);
+System.out.println(m.addProgram());
+System.out.println(m.runQuery("A,B"));
+}
+
+}

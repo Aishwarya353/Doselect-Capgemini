@@ -1,0 +1,74 @@
+import java.lang.*;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+ class Lecturer{
+ 
+   private String lecturerFirstName;
+   private String lecturerLastName;
+   private int salary;
+    
+    public Lecturer(String lecturerFirstName, String lecturerLastName, int salary){
+        this.lecturerFirstName=lecturerFirstName;
+        this.lecturerLastName=lecturerLastName;
+        this.salary=salary;
+    }
+    public void setLecturerFirstName(String lecturerFirstName){
+    this.lecturerFirstName=lecturerFirstName;
+    }
+    public void setLecturerLastName(String lecturerLastName){
+    this.lecturerLastName=lecturerLastName;
+    }
+    public void setSalary(int salary){
+    this.salary=salary;
+    }
+    public String getLecturerFirstName(){
+        return lecturerFirstName;
+    }
+    public String getLecturerLastName(){
+        return lecturerLastName;
+    }
+    public int getSalary(){
+        return salary;
+    }
+    public int compareTo(Lecturer emp) {
+        return this.salary.compareTo(emp.getSalary());
+    }
+    public String toString(){
+        String result="";
+        result+=salary;
+        return result;
+        
+    }
+    }
+ class Implementation{
+   // List<int> salarylist=new ArrayList<int>();
+   public List<String> getFirstName(List<Lecturer> list){
+        List<String> namelist=new ArrayList<String>();
+        for(Lecturer x: list){
+         namelist.add(x.getLecturerFirstName());
+        }
+        return namelist;
+   }
+    
+   public double getMaxSalary(List<Lecturer> list){
+    double maxSal = Collections.max(list);
+    return maxSal;
+        
+   }
+   
+}
+public class Main{
+    public static void main(String [] args){
+        Implementation i = new Implementation();
+        List<Lecturer> list = new ArrayList<Lecturer>();
+        list.add(new Lecturer("Alan", "D'costa", 500000));
+        list.add(new Lecturer("Tom", "Sal", 1000000));
+        list.add(new Lecturer("John", "Mirra", 360000));
+        System.out.println(i.getFirstName(list));
+        System.out.println(i.getMaxSalary(list));
+
+    }
+}

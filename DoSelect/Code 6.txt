@@ -1,0 +1,126 @@
+import java.lang.*;
+import java.util.regex.*;
+
+class Credentials{
+String userName;
+String password;
+
+public Credentials(String userName,String password)
+{
+this.userName=userName;
+this.password=password;
+}
+
+}
+class Implementation{
+public String passwordValidator(Credentials details) throws Exception{
+if (true) {
+            int count = 0;
+            for (int i = 0; i <= 9; i++) {
+                String str1 = Integer.toString(i);
+ 
+                if (details.password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                throw new MissingCharacterException("password must contain at least one special character");
+            }
+}
+if (!(details.password.contains("@") || details.password.contains("#")
+              || details.password.contains("!") || details.password.contains("~")
+              || details.password.contains("$") || details.password.contains("%")
+              || details.password.contains("^") || details.password.contains("&")
+              || details.password.contains("*") || details.password.contains("(")
+              || details.password.contains(")") || details.password.contains("-")
+              || details.password.contains("+") || details.password.contains("/")
+              || details.password.contains(":") || details.password.contains(".")
+              || details.password.contains(", ") || details.password.contains("<")
+              || details.password.contains(">") || details.password.contains("?")
+              || details.password.contains("|"))) {
+          throw new MissingCharacterException("password must contain at least one special character");
+        }
+if (true) {
+            int count = 0;
+ 
+            // checking capital letters
+            for (int i = 65; i <= 90; i++) {
+ 
+                // type casting
+                char c = (char)i;
+ 
+                String str1 = Character.toString(c);
+                if (details.password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                 throw new MissingCharacterException("password must contain at least one special character");
+            }
+        }
+ 
+        if (true) {
+            int count = 0;
+ 
+            // checking small letters
+            for (int i = 97; i <= 122; i++) {
+ 
+                // type casting
+                char c = (char)i;
+                String str1 = Character.toString(c);
+ 
+                if (details.password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                throw new MissingCharacterException("password must contain at least one special character");
+            }
+        }
+        
+ if (!((details.password.length() >= 8)
+              && (details.password.length() <= 15))) {
+            throw new LengthMismatchException("Length must be atleast 8");
+        }
+        else
+        {
+            return "valid password";
+        }
+}
+
+public String signUp(Credentials details){
+try{
+passwordValidator(details);
+}
+catch(MissingCharacterException e1){
+return "Invalid password";
+}
+catch(LengthMismatchException e2){
+return "Invalid password";
+}
+catch(Exception e3){
+return "Other Exception";
+}
+return "signup successfully";
+}
+class MissingCharacterException extends Exception{
+public MissingCharacterException(String str){
+ super(str);
+}
+}
+}
+class LengthMismatchException extends Exception{
+public LengthMismatchException(String str){
+super(str);
+}
+}
+
+public class Main{
+public static void main(String [] args) throws Exception{
+       Implementation obj = new Implementation();
+String s=obj.passwordValidator(new Credentials("Steve", "Akjsdhhj@1"));
+String a=obj.signUp(new Credentials("Bob", "jsdhJS12*&$1"));
+System.out.println(s);
+System.out.println(a);
+}
+}

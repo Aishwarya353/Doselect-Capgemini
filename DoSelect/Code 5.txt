@@ -1,0 +1,53 @@
+import java.util.*;
+
+
+class Validator{
+	public String checkComment(String comment) throws Exception{
+		String a[]= {"abcde","lmno","pqrst","wxyz"};
+		int count=0;
+		for(String i:a){
+			if(comment.contains(i)){
+			    if( comment.contains("abcde") || comment.contains("lmno") || comment.contains("pqrst") || comment.contains("wxyz"))
+				count+=1;
+			}
+		}
+		System.out.println(count);
+		if(count<2 && (comment.contains("abcde") || comment.contains("lmno") || comment.contains("pqrst") || comment.contains("wxyz") )){
+			throw new SpamCommentException("spam comment");
+		}
+		else if(count>2){
+			throw new SpamCommentException("account ban due to spam comment");
+		}
+		else{
+			return "comment is not spam";
+		}
+	}
+	public String commentTheString(String comment) throws Exception{
+		try{
+			checkComment(comment);
+		}
+		catch(SpamCommentException e1){
+			return "Spam Comment Exception";
+		}
+		catch(Exception e2){
+			return "other exception";
+		}
+		return "comment posted";
+	}
+}
+
+class SpamCommentException extends Exception{
+	public SpamCommentException(String msg){
+		super(msg);
+	}
+}
+
+public class Assignment{
+	public static void main(String args[]) throws Exception{
+		Validator obj = new Validator();
+		String s=obj.checkComment("hello my name is steve and abcde abcde lmno");
+		String t=obj.commentTheString("my comment is safe to post");
+		System.out.println(s);
+		System.out.println(t);
+	}
+}

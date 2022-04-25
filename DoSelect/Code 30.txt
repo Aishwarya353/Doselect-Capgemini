@@ -1,0 +1,39 @@
+import java.util.*;
+import java.lang.*;
+
+ class Stocks{
+  public float stockRate;
+  public Stocks(float stockRate) {
+        this.stockRate=stockRate;
+    }
+  public String checkRate(float Rate) throws Exception{
+    float percent=(stockRate*80)/100;
+    if(Rate>percent){
+        throw new StockHighException("Under Profit");
+    }
+    else if(Rate<percent){
+        throw new StockLowException("Under Loss");
+    }
+    else
+    {
+        return "Hope to raise";
+    }
+   }
+}
+ class StockHighException extends Exception{
+     public StockHighException(String msg){
+        super(msg);     
+    }
+}
+ class StockLowException extends Exception{
+     public StockLowException(String msg)
+     {
+        super(msg);
+     }
+ }    
+public class Main{
+    public static void main(String [] args) throws Exception{
+        Stocks stock = new Stocks(10.0f);
+        System.out.println(stock.checkRate(8.0f));
+    }
+}

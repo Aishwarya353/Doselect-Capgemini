@@ -1,0 +1,74 @@
+import java.lang.*;
+import java.util.*;
+ class Person{
+          String name;
+          String dateOfBirth;
+          String email;
+  Person(String name, String dateOfBirth, String email){
+      this.name=name;
+      this.dateOfBirth=dateOfBirth;
+      this.email=email;
+  } 
+}
+ class Implementation{
+ 
+     public String validator(Person details) throws Exception{
+        String dateParts[] = details.dateOfBirth.split("-");
+ 
+        // Getting day, month, and year
+        // from date
+        String day = dateParts[0];
+        String month = dateParts[1];
+        String year = dateParts[2];
+ 
+      String abc=day+"-"+month+"-"+year;
+     if(details.dateOfBirth.equals(abc) && Integer.parseInt(year)>2000){
+     throw new InvalidDateException("date year must be less than 20000");
+     }
+     else if(!(details.email.contains("@doselect.com"))){
+    throw new InvalidEmailException("only @doselect.com domain email are accepted");
+    }
+    else{
+    return "valid details";
+      }
+     
+}
+public String submitDetails(Person details){
+ try{
+ validator(details);
+}
+catch(InvalidDateException e1){
+ return "invalid details";
+}
+catch(InvalidEmailException e2){
+return "invalid details";
+}
+catch(Exception e3){
+ return "other Exception";
+}
+return "details submitted successfully";
+}
+}
+ class InvalidDateException extends Exception{
+          public InvalidDateException(String str)
+          {
+              super(str);
+          }
+ }    
+ class InvalidEmailException extends Exception{
+          public InvalidEmailException(String str)
+         {
+             super(str);
+         }
+ }
+ public class Main{
+     public static void main(String [] args) throws Exception{
+         Person data = new Person("Steve", "12-03-3000", "Steve12@doselect.com");
+    Implementation obj = new Implementation();
+
+
+System.out.println(obj.validator(data));
+
+System.out.println(obj.submitDetails(data));
+     }
+ }

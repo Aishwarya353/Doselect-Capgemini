@@ -1,0 +1,67 @@
+import java.util.*;
+import java.lang.*;
+import java.util.regex.*;
+ class Customer{
+       String  name;
+       String mobileNo;
+       String cId;
+public Customer(String  name,String mobileNo,String cId){
+this.name=name;
+this.mobileNo=mobileNo;
+this.cId=cId;
+}
+}
+
+class Validator{
+      public String validateCId(Customer c) throws Exception{
+String sub=c.name.substring(c.name.length()-2);
+String number=c.mobileNo.substring(0,4);
+String merge=number+sub;
+
+if(!c.cId.equals(merge)){
+throw new InvalidCIdException("Invalid CId");
+}
+else{
+return "Valid CId";
+}
+}
+       
+      public String validateMobileNo(Customer c) throws Exception
+       {
+Pattern ptrn = Pattern.compile("[7-9][0-9]{9}");  
+
+Matcher match = ptrn.matcher(c.mobileNo);  
+
+if(!(match.find() && match.group().equals(c.mobileNo))) {
+throw new InvalidMobileNoException("Invalid MobileNo");
+}
+else{
+return "Valid MobileNo";
+}
+}
+   }
+  class InvalidCIdException extends Exception{
+         public InvalidCIdException(String str)
+      {
+super(str);
+}
+}
+  class InvalidMobileNoException extends Exception{
+ 
+    public InvalidMobileNoException(String str)
+    {
+super(str);
+}
+}
+public class Main{
+public static void main(String [] args) throws Exception{
+Customer obj = new Customer("Steve","9898111111","9898ve");
+Validator val = new Validator();
+String CID = val.validateCId(obj);
+String mob = val.validateMobileNo(obj);
+System.out.println(CID);
+System.out.println(mob);
+
+}
+
+}

@@ -1,0 +1,54 @@
+import java.lang.*;
+class Rating{
+int imdbRating;
+int nominee;
+
+public Rating(int imdbRating,int nominee){
+this.imdbRating=imdbRating;
+this.nominee=nominee;
+}
+}
+
+class Validator{
+public String canBeConsideredForTheAward(Rating rating)throws Exception{
+  if(rating.imdbRating<7){
+throw new MovieRatingException("Movie not eligible for filmfare award");
+}
+else if(rating.nominee<4){
+throw new MovieRatingException("Minimum 4 nominee required");
+}
+else{
+return "Considered for the award";
+}
+}
+public String sendInvite(Rating rating) throws  Exception{
+ try{
+    canBeConsideredForTheAward(rating);
+}
+catch(MovieRatingException e1){
+return "Not invited";
+}
+catch(Exception e2){
+return "Other Exception";
+}
+return "Actors and Directors invited";
+}
+}
+class MovieRatingException extends Exception{
+public MovieRatingException(String msg){
+super(msg);
+}
+}
+public class Main{
+public static void main(String [] args)throws Exception{
+Rating rating = new Rating(9, 7);
+Validator v = new Validator();
+String s = v.canBeConsideredForTheAward(rating);
+String t = v.sendInvite(rating);
+s.toLowerCase();
+t.toLowerCase();
+System.out.println(s);
+System.out.println(t);
+}
+
+}

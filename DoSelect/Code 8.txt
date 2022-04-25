@@ -1,0 +1,56 @@
+import java.lang.*;
+import java.util.*;
+ class Product{
+          String name;
+          int price;
+          String coupon;
+  Product(String name, int price, String coupon){
+      this.name=name;
+      this.price=price;
+      this.coupon=coupon;
+  } 
+}
+ class Validator{
+ public String validatorCoupon(Product details) throws Exception{
+String ds[] = details.coupon.split("-");	
+        String name = ds[0];
+        String discount = ds[1];
+if(!(details.coupon.contains("-")) || Integer.parseInt(discount)<10 || Integer.parseInt(discount)>25) {
+     throw new InvalidCouponException("Invalid Coupon");
+}
+else{
+    return "Valid Coupon";
+}
+     
+}
+public double netPrice(Product details) throws Exception{
+    String ds[] = details.coupon.split("-");	
+        String name = ds[0];
+        String discount = ds[1];
+        double dv=(details.price*Integer.parseInt(discount))/100;
+double net=details.price-dv;
+ try{
+ validatorCoupon(details);
+}
+catch(InvalidCouponException e1){
+ return details.price;
+}
+return net;
+}
+}
+ class InvalidCouponException extends Exception{
+          public InvalidCouponException(String str)
+          {
+              super(str);
+          }
+ }    
+ public class Main{
+     public static void main(String [] args) throws Exception{
+         Product obj=new Product("IPhone",25000,"IPhone-10");
+Validator val = new Validator();
+String valCop = val.validatorCoupon(obj);
+double price = val.netPrice(obj);
+System.out.println("valCop="+valCop);
+System.out.println("price="+price);
+     }
+ }

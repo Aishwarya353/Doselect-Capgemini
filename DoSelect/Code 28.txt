@@ -1,0 +1,98 @@
+import java.lang.*;
+import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
+  class Product{
+     private int id;
+     private String name;
+     private double price;
+      
+   public Product(int id, String name, double price){
+this.id=id;
+this.name=name;
+this.price=price;
+}
+public void setId(int id){
+this.id=id;
+}
+public void setName(String name){
+this.name=name;
+}
+public void setPrice(double price){
+this.price=price;
+}
+public double getPrice(){
+    return price;
+}
+public String getName(){
+    return name;
+}
+public int getId(){
+    return id;
+}
+public String toString(){
+    String result="";
+    result+="Product{id="+id+", name=\'"+name+"\', price="+price+"}";
+    return result;
+    
+}
+}
+  class Implementation{
+      public Map<String, List<Product>>  getProductName(List<Product> products){
+            Map<String,List<Product>> map1=new HashMap<>();
+            
+            // for(Product p: products){
+            //     if(p.getPrice()>20){
+            //         List<Product> filteredList = products.stream().filter(s->p.getPrice()>20)
+            //         .collect(Collectors.toList());
+            //         map1.put(p.getName(),Product.filteredList);
+            //     }
+            // }
+    
+           List<Product> list=new ArrayList<Product>();
+           for(Product p: products){
+                if(p.getPrice()>20){
+                    list.add(p);
+                    map1.put(p.getName(),list);
+                }
+            }
+           
+            return map1;
+      }
+      
+      public Map<String, Double> getSum(List<Product> products)
+           {
+               Map<String,Double> map2=new HashMap<>();
+               int sum=0;
+               for(Product p: products){
+                
+                    map2.put(p.getName(),p.getPrice());
+               
+            }
+            return map2;
+               
+           }
+
+  }
+// for(int i=0;i<products.size();i++){
+//     if(products[i].getPrice>20){
+//         map.put(products[i].getName(),product[i]);
+//     }
+// }
+// }
+
+public class Main{
+public static void main(String [] args){
+Product pr5 = new Product(1, "Bruchotte", 5.0);
+Product pr6 = new Product(4, "Banana", 1305.0);
+
+List<Product> pr= Arrays.asList(pr5, pr6);
+Implementation imp=new Implementation();
+System.out.println(imp.getProductName(pr));
+System.out.println(imp.getSum(pr));
+}
+
+}

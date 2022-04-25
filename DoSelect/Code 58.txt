@@ -1,0 +1,109 @@
+// Q58
+// Complete the classes using the Specifications given below. Consider default visibility of classes, data fields, and methods unless mentioned otherwise.
+// class Laptop
+// - define all the variables according to the above specifications.
+// - define a constructor according to the above specifications.
+// Class Purchase
+// - define all the variables according to the above specifications.
+// Implement the below methods for this class:
+// -String purchaseLaptop(String name, String model, String date):
+// 	Check the following conditions -
+// 1.	The name must be of two words. The first word denotes the name of the brand ["Dell", "Acer", "HP"] and the second word is the number of processors ["Single", "Double", "Quad", "Octa"]. If the company name is not among the mentioned then return "Invalid brand name". If the processor is any other than the mentioned then return "Invalid processor".
+// 2.	model name length must be equal to 9 with 3 uppercase letters, 3 lowercase letters, 2 digits, and 2 special characters. If this condition is not fulfilled return "Invalid model number".
+// 	If the above all conditions are satisfied then initialize the laptop variable with the above-mentioned specifications, return "Laptop purchased".
+// -String findGeneration(String processor):
+// 	If the number of processors is "Octa" return "Gen 11".
+// 	If the number of processors is "Quad" return "Gen 10".
+// 	If the processor is "Double" return "Gen 9".
+// 	Else return "Lower than 9".
+// Sample Input
+//      Laptop l=new Laptop("Acer Quad","@#","12/12/2018");
+//      Purchase p=new Purchase();
+//      p.purchaseLaptop("Dell Quad","@#","12/12/2018");
+// Sample Output
+//      Invalid model number
+
+
+
+import java.lang.*;
+import java.util.*;
+
+ class Laptop{
+     String name;
+     String model;
+     String date;
+
+ public Laptop(String name, String model, String date){
+     this.name=name;
+     this.model=model;
+     this.date=date;
+ }
+}
+ class Purchase{
+    Laptop laptop;    
+    public Purchase(){
+        this.laptop=laptop;
+    }
+   public String purchaseLaptop(String name, String model,String date)  
+    {
+        int upper = 0, lower = 0, number = 0, special = 0;
+        String Parts[] = name.split(" ");
+        String brand = Parts[0];
+        String nop = Parts[1];
+        if(!(brand.equals("Acer") || brand.equals("Dell") || brand.equals("HP"))){
+            return "Invalid brand name";
+        }
+        if(!(nop.equals("Single") || nop.equals("Double") || nop.equals("Quad") || nop.equals("Octa"))){
+            return "Invalid Processor";
+        }
+        for(int i = 0; i < model.length(); i++)
+        {
+            char ch = model.charAt(i);
+            if (ch >= 'A' && ch <= 'Z')
+                upper++;
+            else if (ch >= 'a' && ch <= 'z')
+                lower++;
+            else if (ch >= '0' && ch <= '9')
+                number++;
+            else
+                special++;
+        }
+        if(!(model.length()==9 && upper==3 && lower==2 && number==2 && special==2 )){
+            return "Invalid Model Number";
+        }
+        else{
+            return "Laptop Purchased";
+        }
+        
+    }
+   public String findGeneration(String processor)
+    {
+
+
+        switch(processor){
+            case "Octa":
+                return "Gen 11";
+                //break;
+            case "Quad":
+                return "Gen 10";
+                //break;
+            case "Double":
+                return "Gen 9";
+                //break;
+            default:
+                return "Lower than 9";
+        }
+    }
+}
+public class Main{
+    public static void main(String [] args){
+        Laptop l=new Laptop("Acer Quad","11AAAaa@#","12/12/2018");
+        Purchase p=new Purchase();
+        String s=p.purchaseLaptop("Dell Quad","11AAAaa@#","12/12/2018");
+        System.out.println(s);
+        if(s.equals("Laptop Purchased")){
+        System.out.println(p.findGeneration("Quad"));
+        }
+
+    }
+} 

@@ -1,0 +1,57 @@
+import java.lang.*;
+import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+ class Student{
+   public String name;
+   private int score;
+    public Student(String name, int score){
+        this.name=name;
+        this.score=score;
+    }
+   public String getName(){
+       return name;
+   }
+   public int getScore(){
+       return score;
+   }
+    public String toString(){
+        String result="";
+        result+="Student{name=\'"+name+"', score="+score+"}";
+        return result;
+    }
+}
+ class ReportCard{
+   public List<String>  mapStudentName(List<Student> list)
+    {
+        List<String> namelist=new ArrayList<String>();
+        for(Student x: list){
+         namelist.add(x.getName());
+            
+        }
+        return namelist;
+    }
+
+   public List<Student> scoreQuery(List<Student> list)
+   {
+       List<Student> scorelist=new ArrayList<Student>(); 
+    for(Student x:list){
+        if(x.getScore()>40 && x.getScore()<=100){
+            scorelist.add(x);
+        }
+    }
+        return scorelist;
+   }
+}
+public class Main{
+    public static void main(String [] args){
+        ReportCard r = new ReportCard();
+        List<Student> list = new ArrayList<Student>();
+        list.add(new Student("Sarah", 70));
+        list.add(new Student("John", 99));
+        list.add(new Student("Jenny", 39));
+        list.add(new Student("Harry", 22));
+        System.out.println(r.mapStudentName(list));
+        System.out.println(r.scoreQuery(list));
+    }
+}
